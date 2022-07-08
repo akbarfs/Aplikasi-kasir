@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminKatalog | VOKASI UB</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- Date picker -->
+  <link rel="stylesheet" href="datepicker/css/datepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Datepicker -->
+  <link rel="stylesheet" href="datepicker/css/datepicker.min.css">
+  
+  <!-- Select2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  </head>
+  <script src="script.js"></script>
+
+<body class="hold-transition sidebar-mini layout-fixed" onload="getData()">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <!--<li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>-->
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+            Sign Out&nbsp; 
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="#" class="brand-link">
+    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+         style="opacity: .8">
+    <span class="brand-text font-weight-light">AdminKatalog</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+            <p>
+              Data Master
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="penjualan.html" class="nav-link">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>
+            Transaksi Penjualan
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h3><i class="fas fa-database"></i> Data Master</h3>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item active"> Data Master</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content" >
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title" style="margin-top:5px;"><i class="fas fa-list-ul"></i> Daftar  Data</h3>
+                <div class="card-tools">
+                  <button class="btn btn-sm btn-info float-right" onclick="tambahData()">
+                  <i class="fas fa-plus"></i> Tambah Data</button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              <div class="col-md-12">
+                  <form method="" action="">
+                    <div class="row">
+                        <div class="col-md-4 bottom-10">
+                          <input type="text" class="form-control" id="kata_kunci" name="katakunci">
+                        </div>
+                        <div class="col-md-5 bottom-10">
+                          <button type="button" class="btn btn-primary" onclick="searchData()"><i class="fas fa-search"></i>&nbsp; Search</button>
+                        </div>
+                    </div><!-- .row -->
+                  </form>
+                </div><br>
+
+
+                  <table class="table table-bordered" id="tabel">
+                    <thead>                  
+                      <tr>
+                        <th width="5%" class="text-center">No</th>
+                        <th width="50%">Nama Barang</th>
+                        <th width="30%" class="text-center">Harga</th>
+                        <th width="15%" class="text-center">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="hasil">
+
+                    </tbody>
+                  </table>
+                </div>
+
+    <!-- modal -->
+    <div class="modal" id="editModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Data</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group row">                
+              <label for="Barang" class="col-sm-3 col-form-label">Nama Barang</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="nama_brg" value="">
+                <input type="hidden" class="form-control" id="id_brg" value="">
+              </div>
+              <label for="Barang" class="col-sm-3 col-form-label">Harga</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="hrg" value="">
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <div class="col-sm-12">
+              <button type="button" onclick="updateData()" class="btn btn-info float-right"><i class="fas fa-save"></i> Simpan</button>
+              <button type="button" onclick="closeEditModal()" class="btn btn-default float-left">Tutup</button>
+            </div>  
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- modal -->
+    <div class="modal" id="insertModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Tambah Data</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group row">                
+              <label for="Barang" class="col-sm-3 col-form-label">Nama Barang</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="nama_barang" value="">
+              </div>
+              <label for="Barang" class="col-sm-3 col-form-label">Harga</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="harga" value="">
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <div class="col-sm-12">
+              <button type="button" onclick="insertData()" class="btn btn-info float-right"><i class="fas fa-save"></i> Tambah</button>
+              <button type="button" onclick="closeInsertModal()" class="btn btn-default float-left">Tutup</button>
+            </div>  
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- modal -->
+    <div class="modal" id="confirmModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Confirm Message</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="confirmMessage"></div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="confirmOk">OK</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2021 <a href="http://vokasi.ub.ac.id">Vokasi UB</a>.</strong>
+    All rights reserved.
+  </footer>
+
+</div>
+<!-- ./wrapper -->
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+
+<script src="dist/js/global.js"></script>
+<!-- CKEditor -->
+<script src="ckeditor/ckeditor.js"></script>
+<!-- <script>
+  // Replace the <textarea id="editor1"> with a CKEditor
+  // instance, using default configuration.
+  // CKEDITOR.replace( 'editor1',{filebrowserImageBrowseUrl : 'kcfinder'} );
+  CKEDITOR.replace( 'editor2',{filebrowserImageBrowseUrl : 'kcfinder'} );
+
+</script> -->
+<!-- bootstrap datepicker -->
+<script src="datepicker/js/bootstrap-datepicker.js"></script>
+<script>
+  //Date picker
+  $('#datepicker-year').datepicker({
+		format: "yyyy",
+		orientation: "top auto",
+    viewMode: "years", 
+    minViewMode: "years",
+    autoclose: true
+  });
+</script>
+</body>
+</html>
